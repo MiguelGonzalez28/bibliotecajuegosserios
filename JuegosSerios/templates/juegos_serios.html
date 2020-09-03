@@ -1,0 +1,134 @@
+{% extends "base_site.html" %}
+
+{% block css %}
+    <link href="/static/css/juegos_serios.css" rel="stylesheet">
+{% endblock %}
+
+{% block title %}<title>Juegos Serios</title>{% endblock %}
+
+{% block navigation %}
+    <li class="nav-item">
+        <a class="nav-link js-scroll-trigger" href="{% url 'home' %}">Inicio</a>
+    </li>
+{% endblock %}
+
+{% block content %}
+<section id="todos_juegos_serios">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 mx-auto">
+
+          <p align="right">
+            <button class="btn btn-info btn-sm"
+                    data-target="#serios_games_help"
+                    data-toggle="modal">
+              <i class="far fa-question-circle"></i> Ayuda
+            </button>
+          </p>
+
+          <div class="row">
+            {% for juego_serio in juegos_serios %}
+            <div class="col-lg-6">
+              <div class="card text-center border-light rounded">
+
+                <!-- Image -->
+                <div class="card-image">
+                  <img class="card-img-top" height="280" src="/static/images/game_{{ juego_serio.id  }}.png">
+                </div>
+                <!-- End Image -->
+
+                <!-- Name and description -->
+                <div class="card-header rounded-pill"><h4>{{juego_serio.nombre | upper}}</h4></div>
+                <p class="card-text text-justify">{{juego_serio.descripcion}}</p>
+                <!-- End Header and description -->
+
+                <!-- Authors -->
+                <div class="authors text-left">
+                    <h6>Autores</h6>
+                </div>
+                <div class="text-justify">
+                  <ul class="list-group">
+                    {% for autor in autores %}
+                  {% if autor.juego_serio_id == juego_serio.pk %}
+                    <li class="list-group-item list-group-item-info" type="none">{{ autor.nombre_completo }}</li>
+                  {% endif %}
+                  {% endfor %}
+                  </ul>
+                </div>
+                <!-- End Authors -->
+
+                <br>
+
+                <!-- Duration, Licence, Type of activity, Documentation,  -->
+                <div class="features text-left">
+                    <h6>Características</h6>
+                </div>
+                  <ul type="none" class="text-left">
+                    <li>
+                      <i class="far fa-clock" aria-hidden="true"></i>
+                      {{ juego_serio.duracion | default_if_none:"0" }} min
+                    </li>
+                    <li>
+                      <i class="fas fa-dollar-sign" aria-hidden="true"></i>
+                      {{ juego_serio.licencia | default_if_none:"Licencia desconocida" }}
+                    </li>
+                    <li>
+                      <i class="fas fa-gamepad" aria-hidden="true"></i>
+                      {{ juego_serio.tipo_actividad }}
+                    </li>
+                    <li class="list-inline-item">
+                      <i class="fas fa-globe" aria-hidden="true"></i>
+                      {% if juego_serio.documentacion != None %}
+                        <a href="{{ juego_serio.documentacion }}" target="_blank">{{ juego_serio.nombre }}</a>
+                      {% else %}
+                        No disponible
+                      {% endif %}
+                    </li>
+                  </ul>
+                <!-- End Duration, Licence, Type of activity, Documentation,  -->
+
+              <hr>
+                <div class="text-right">
+                  <a class="card-link" href="{% url 'detalles' juego_serio.id %}">Detalles</a>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<div class="modal fade" id="serios_games_help" tabindex="-1" role="dialog" aria-labelledby="serios_games_help_title" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="serios_games_help_title">Colección de juegos serios</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+          Esta es una colección de juegos serios que sirven para enseñar los conceptos básicos del método Kanban.
+        </p>
+        <p>
+          Por cada juego serio se muestra lo siguiente:
+        </p>
+
+        <div class="container-fluid px-0">
+          <div class="row justify-content-center">
+            <img class="img-fluid" src="/static/images/juegos_serios_modal_help.png"/>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

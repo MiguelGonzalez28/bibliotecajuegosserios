@@ -1,0 +1,52 @@
+{% extends "base_site.html" %}
+{% load bootstrap4 %}
+
+{% block css %}
+    <link href="/static/css/ContactUs.css" rel="stylesheet">
+{% endblock %}
+
+{% block title %}<title>Contáctanos</title>{% endblock %}
+
+{% block navigation %}
+    <li class="nav-item">
+        <a class="nav-link js-scroll-trigger" href="{% url 'home' %}">Inicio</a>
+    </li>
+{% endblock %}
+
+{% block search %}
+
+{% endblock %}
+
+{% block content %}
+
+<section class="bg-light" id="contacto">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                {% if success == True %}
+                    {% if message == '¡Mensaje enviado correctamente!' %}
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            {{ message }}
+                    {% elif message == 'Se enonctró un error en el encabezado.' %}
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            {{ message }}
+                    {% endif %}
+                    <button aria-label="Cerrar" class="close" data-dismiss="alert" type="button">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                {% endif %}
+                <form method="post">
+                    {% csrf_token %}
+                    {% bootstrap_form form %}
+                    <div class="form-group">
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fas fa-envelope"></i> Enviar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

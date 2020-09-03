@@ -1,0 +1,506 @@
+{% extends "base_site.html" %}
+
+{% block css %}
+<link href="/static/css/index.css" rel="stylesheet">
+<link href='https://fonts.googleapis.com/css?family=Song Myung' rel='stylesheet'>
+<style>
+    .dropdown-item{
+        font-size: 20px !important;
+    }
+</style>
+{% endblock %}
+
+{% block title %}<title>Inicio</title>{% endblock %}
+
+{% block navigation %}
+
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbardrop">
+        Inicio
+    </a>
+    <div class="dropdown-menu">
+        <a class="dropdown-item js-scroll-trigger" href="#welcome">Bienvenido(a)</a>
+        <a class="dropdown-item js-scroll-trigger" href="#introduccion">Introducción</a>
+        <a class="dropdown-item js-scroll-trigger" href="#mi_experiencia">Mi experiencia con Juegos Serios</a>
+        <a class="dropdown-item js-scroll-trigger" href="#instrucciones">¿Cómo utilizar la plataforma?</a>
+        <a class="dropdown-item js-scroll-trigger" href="#kanban">¿Qué es Kanban?</a>
+        <a class="dropdown-item js-scroll-trigger" href="#que_juegos_serios">¿Qué son los juegos serios?</a>
+        <a class="dropdown-item js-scroll-trigger" href="#about_miguel">Acerca de nosotros</a>
+    </div>
+</li>
+
+
+
+{% endblock %}
+
+{% block search %}
+{% endblock %}
+
+{% block content %}
+<header class="bg-welcome text-white" id="welcome">
+    <div class="container text-center">
+        <h1>Bienvenido(a)</h1>
+        <p class="lead">Bienvenido(a) a esta biblioteca de juegos serios para enseñar el método Kanban. En esta
+            biblioteca encontrarás detalles relevantes de una selección de juegos serios, así como algunas sugerencias
+            que puedes implementar.</p>
+        <p class="lead">De esta forma se busca que puedas sacar el máximo provecho al enseñar el método Kanban.</p>
+    </div>
+</header>
+
+<section id="introduccion">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <h1 align="center">Introducción</h1>
+                <div class="row">
+                    <div class="col-6">
+                        <h3>Contexto y Motivación</h3>
+                        <p class="lead" align="justify">
+                            En 2019 estos eran los frameworks, metodologías y métodos de desarrollo más utilizados.
+                            Como se puede apreciar, Kanban se encuentra entre los más utilizados y se puede decir que su
+                            popularidad va en incremento, esto provoca que se quiera implementar en más organizaciones
+                            por lo tanto es necesario ayudar a los entrenadores Kanban con herramientas que faciliten la
+                            enseñanza del método para que las empresas no cometan errores a causa de una mala
+                            implementación.
+                        </p>
+                    </div>
+                    <div class="col-6">
+                        <img class="img-fluid" src="/static/images/metodologias_agiles.png">
+                        <p style="text-align: right;"><b>Fuente:
+                            <a href="https://www.javiergarzas.com/2019/05/cual-es-el-estado-de-la-agilidad-a-nivel-mundial-13th-state-of-agile.html"
+                               target="_blank">Frameworks Ágiles más usados</a></b></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p class="lead" align="justify">
+                            Por otra parte ofrecer programas de entrenamiento a sus empleados es una de las tareas
+                            necesarias que los gerentes deben cumplir. Aunque hay muchos métodos, modelos o herramientas
+                            que son útiles para este propósito, muchas empresas se enfrentan a algunos problemas comunes
+                            como la motivación de los empleados y los altos costos en términos de dinero y tiempo.
+                        </p>
+                        <p class="lead" align="justify">
+                            Algunos estudios han evaluado el uso de métodos de entrenamiento basado en juegos, entre los
+                            resultados el 80% de los artículos estudiados están a favor del uso de entrenamientos
+                            basados en juegos y el otro 20% estaban a en contra o neutrales
+                        </p>
+                        <p class="lead" align="justify">
+                            Así mismo, entre los estudios que están a favor del uso de entrenamientos basados en juegos
+                            destacan algunas ventajas y beneficios:
+                        </p>
+                        <p class="lead" align="justify">
+                            Ventajas:
+                            <ul>
+                                <li class="lead">Reducción de costos y tiempo en la capacitación organizativa.</li>
+                                <li class="lead">Reducción en la tasa de abandono de los empleados en los cursos de capacitación.</li>
+                            </ul>
+                        </p>
+                        <p class="lead" align="justify">
+                            Beneficios:
+                            <ul>
+                                <li class="lead">Aumento de la participación en las iniciativas empresariales.</li>
+                                <li class="lead">Adopción de programas.</li>
+                                <li class="lead">Mejora de la productividad.</li>
+                                <li class="lead">Aumenta la motivación.</li>
+                                <li class="lead">Etcétera.</li>
+                            </ul>
+                        </p>
+                        <h3>Alcance</h3>
+                        <p class="lead" align="justify">
+                            Este trabajo tiene como objetivo ayudar a los entrenadores y maestros que buscan una forma
+                            de enseñar el método Kanban de manera más eficiente poniendo a su alcance una colección de
+                            juegos serios para enseñar Kanban y algunas sugerencias basadas en mi experiencia.
+                        </p>
+                        <p class="lead" align="justify">
+                            Esta biblioteca por el momento solo incluye doce juegos serios en su mayoría de libre acceso
+                            que pueden ser consultados por cualquiera persona interesada.
+                        </p>
+                        <p class="lead" align="justify">
+                            Las sugerencias y juegos serios están alineados a cumplir con los objetivos de aprendizaje
+                            de la certificación de “Team Kanban Practitioner” de Kanban University que es para personas
+                            sin experiencia o poca experiencia en Kanban.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bg-light" id="mi_experiencia">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <h1 align="center">Mi experiencia con los juegos serios</h1>
+                <div class="row">
+                    <p class="lead" align="justify">
+                        A lo largo de este posgrado fui invitado a participar como auxiliar en diferentes talleres de Kanban
+                        en diferentes estados de la república, así mismo implementé varios juegos serios de Kanban a los
+                        alumnos de la 12va y 13va generación de la Maestría en Ingeniería de Software del CIMAT Unidad
+                        Zacatecas lo que me permitió probar diferentes juegos para enseñar Kanban, así como conocer un poco
+                        sobre el perfil de los participantes.
+                    </p>
+                </div>
+                <div class="row">
+                    <div class="carousel slide" data-ride="carousel" id="carousel">
+                        <ol class="carousel-indicators">
+                            <li class="active" data-slide-to="0" data-target="#carousel"></li>
+                            <li data-slide-to="1" data-target="#carousel"></li>
+                            <li data-slide-to="2" data-target="#carousel"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img alt="Featureban en Zacatecas" class="img-fluid carousel_img"
+                                     src="/static/images/f_z.jpg">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5 style="color: black;">Featureban en Canacintra Zacatecas</h5>
+                                    <p style="color: black;">
+                                        Aquí se tenían personas de todos los perfiles, la mayoría sin experiencia en
+                                        Kanban, se jugó al Featureban lo que permitió a los participantes divertirse y
+                                        aprender los conceptos básicos del método Kanban.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <img alt="Featureban en Hidalgo" class="img-fluid carousel_img"
+                                     src="/static/images/f_h.jpg">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5 style="color: black;">Featureban con emprendedores y estudiantes en Pachuca Hidalgo</h5>
+                                    <p style="color: black;">
+                                        En este taller que se impartió en el estado de Hidalgo, se conto con la
+                                        participación de en su mayoría estudiantes de licenciatura, maestros y
+                                        emprendedores. Los participantes se veían motivados además de que se fomentó la
+                                        participación. Se obtuvieron buenos resultados.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <img alt="Sudokuban en Cimat Zacatecas" class="img-fluid carousel_img"
+                                     src="/static/images/s_c.jpg">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5 style="color: black;">Sudokuban con estudiantes de Maestría en CIMAT Zacatecas</h5>
+                                    <p style="color: black;">
+                                        En esta ocasión se aplicó el juego de Sudokuban el cual consiste en que los
+                                        participantes deben resolver Sudokus y obtener la mayor cantidad de puntos. La
+                                        mayoría de los alumnos tuvieron problemas para resolver los Sudokus debido a su
+                                        dificultad. La lección aprendida fue que hay que evitar los juegos serios que
+                                        tengan mecánicas difíciles para los participantes.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev" data-slide="prev" href="#carousel" role="button">
+                            <span aria-hidden="true" class="carousel-control-prev-icon"></span>
+                            <span class="sr-only">Previo</span>
+                        </a>
+                        <a class="carousel-control-next" data-slide="next" href="#carousel" role="button">
+                            <span aria-hidden="true" class="carousel-control-next-icon"></span>
+                            <span class="sr-only">Siguiente</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="instrucciones">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <h1 align="center">¿Cómo utilizar la plataforma?</h1>
+                <div class="row">
+                    <p class="lead" align="justify">
+                        Esta biblioteca está compuesta por cuatro partes que se describen a continuación.
+                    </p>
+                    <p class="lead" align="justify">
+                        <b style= "font: 40px bold;">1. </b>Esta página donde se dan a conocer las <b>motivaciones,
+                        contexto y limitaciones de este trabajo</b>, también se habla de la experiencia propia
+                        obtenida de participar en diferentes talleres de Kanban, se definen los conceptos de Kanban y
+                        juegos serios y por último se habla un
+                        poco acerca de las personas involucradas.
+                    </p>
+                    <img class="img-fluid" src="/static/images/acceder_index.png">
+                </div>
+                <br>
+                <br>
+                <div class="row">
+                    <div class="col-5">
+                        <p class="lead" align="justify">
+                            <b style= "font: 40px bold;">2. </b>La colección de juegos serios que fueron estudiados,
+                            se puede acceder desde Menú principal > Juegos Serios.
+                        </p>
+                    </div>
+                    <div class="col-7">
+                        <img class="img-fluid" src="/static/images/acceder_juegos_serios.png">
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="row">
+                    <div class="col-7">
+                        <img class="img-fluid" src="/static/images/detalles_juegos_serios.gif">
+                    </div>
+                    <div class="col-5">
+                        <p class="lead" align="justify">
+                            Los detalles de cada juego se encuentran separados en secciones para que sea más fácil
+                            encontrar las características que se deseen consultar.
+                        </p>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="row">
+                    <div class="col-5">
+                        <p class="lead" align="justify">
+                            <b style= "font: 40px bold;">3. </b>Una sección de sugerencias que pueden ser de utilidad a
+                            entrenadores y maestros que deseen enseñar el método Kanban.
+                            Se accede desde Menú Principal > Sugerencias.
+                        </p>
+                    </div>
+                    <div class="col-7">
+                        <img class="img-fluid" src="/static/images/acceder_sugerencias.png">
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="row">
+                    <div class="col-7">
+                        <img class="img-fluid" src="/static/images/form_sugerencias.png">
+                    </div>
+                    <div class="col-5">
+                        <p class="lead" align="justify">
+                            Para poder acceder a las sugerencias, antes es necesario seleccionar sobre que sugerencias se
+                            desea consultar, así mismo, se puede seleccionar la experiencia y perfil de los
+                            participantes si se conocen.
+                        </p>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="row">
+                    <div class="col-5">
+                        <p class="lead" align="justify">
+                            <b style= "font: 40px bold;">4. </b>Y por último pero no menos importante, se cuenta con un
+                            formato de contacto para que los visitantes envíen sus comentarios.
+                        </p>
+                    </div>
+                    <div class="col-7">
+                        <img class="img-fluid" src="/static/images/acceder_contacto.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bg-light" id="kanban">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <br>
+                <h1 align="left">¿Qué es Kanban?</h1>
+                <div class="row">
+                    <div class="col-6">
+                        <p class="lead" style="text-align: justify;">Kanban es una palabra japones que significa “señal” o “tarjeta”, es una de las
+                            herramientas más importantes de Lean la cual sirve para controlar la cadena de logística
+                            desde el
+                            punto de vista de la producción con lo cual logran el Just-in-Time (<a
+                            href="https://books.google.com.mx/books?id=QebEDwAAQBAJ" target="_blank">Ohno, 1988</a>).
+                        </p>
+                    </div>
+                    <div class="col-6">
+                        <img alt="Tablero Kanban" class="img-fluid rounded" src="/static/images/practica_2.png">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <br>
+                        <p class="lead" style="text-align: justify;">
+                        <a href="https://books.google.com.mx/books?id=RJ0VUkfUWZkC" target="_blank">Anderson (2010)</a>,
+                            ha intentado adaptar el sistema kanban al desarrollo de software. Identificó cinco elementos
+                            para la implementación efectiva del método Kanban: 1) visualizar el flujo de trabajo, 2)
+                            limitar el trabajo en progreso de sus siglas en ingles work-in-progress (WIP), 3) gestionar
+                            el flujo, 4) hacer las políticas explícitas y 5) implementar ciclos de retroalimentación.
+                    </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="que_juegos_serios">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <br>
+                <h1 align="right">¿Qué son los juegos serios?</h1>
+                <div class="row">
+                    <div class="col-6">
+                        <img alt="Juegos serios" class="img-fluid rounded" src="/static/images/serious_games.jpg">
+                    </div>
+                    <div class="col-6">
+                        <p class="lead" style="text-align: justify;">
+                            Los juegos serios son juegos que tienen como objetivo principal el enseñar algo antes que
+                            entretener, y
+                            pueden ser aplicados en cualquier contexto. Lo más importante en lo que respecta a juegos
+                            serios es que los participantes aprendan algo y que al mismo tiempo se diviertan
+                            <a href="https://books.google.com.mx/books?id=49kTAQAAIAAJ" target="_blank">
+                                (Michael & Chen 2006)
+                            </a>,
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <br>
+                        <p class="lead" style="text-align: justify;">
+                            Algo importante es que los elementos del aprendizaje estén claramente definidos, y que los
+                            escenarios que se simulan sean factibles y correctos ya que de lo contrario se corre el
+                            riesgo de enseñar habilidades equivocadas
+                            <a href="https://www.researchgate.net/publication/220017759_Serious_Games_-_An_Overview" target="_blank">
+                            (Susi et al., 2015)</a>.
+                            Algunos de los dominios en los que se han implementado son: la sanidad, las políticas
+                            públicas, la comunicación estratégica, la defensa, la formación y la educación
+                            <a href="https://ieeexplore.ieee.org/document/1510565/" target="_blank">(Zyda 2005)</a>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bg-light" id="about_miguel">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <h1 align="left">Acerca de nosotros</h1>
+                <div class="row">
+                    <div class="col-8">
+                        <p class="lead" style="text-align: justify;">
+                            Ingeniero en Sistemas Computacionales del Instituto Tecnológico Superior de Fresnillo
+                            actualmente alumno del CIMAT Unidad Zacatecas del posgrado de Maestría en Ingeniería de
+                            Software 12va generación.
+                        </p>
+                        <p class="lead" style="text-align: justify;">
+                            Realiza el trabajo de tesis orientado a crear una biblioteca de juegos serios para enseñar
+                            el método Kanban que pueda ser de utilidad para entrenadores y maestros que buscan
+                            diferentes formas de enseñar dicho método.
+                        </p>
+                        <p class="lead" style="text-align: justify;">
+                            Cuenta con el Certificado de Diseño de Sistemas Kanban (KMP1) y desde que inicio el posgrado
+                            le llamó la atención el tema de los juegos serios y como estos pueden ayudar a enseñar de
+                            una forma más lúdica.
+                        </p>
+                    </div>
+                    <div class="col-4">
+                        <img alt="Miguel Ángel González Pacheco" class="img-fluid rounded" src="/static/images/miguel.png">
+                        <p><b>Miguel Ángel González Pacheco</b></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="about_mirna">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <div class="row">
+                    <div class="col-4">
+                        <img alt="Mirna Ariadna Muñoz Mata" class="img-fluid rounded" src="/static/images/mirna.jpg">
+                        <p><b>Mirna Ariadna Muñoz Mata</b></p>
+                    </div>
+                    <div class="col">
+                        <p class="lead" style="text-align: justify;">
+                            Doctor en Informática por la Universidad Politécnica de Madrid (UPM), en Madrid España,
+                            con mención de “Doctorado Europeo”. Realizó estancia posdoctoral en la Universidad
+                            Carlos III de Madrid. Actualmente es investigador del CIMAT - Unidad Zacatecas en el
+                            área de Ingeniería de Software y tiene el nombramiento de SNI-I.
+                        </p>
+                        <p class="lead" style="text-align: justify;">
+                            Miembro del grupo de investigación de ingeniería de software de CIMAT.
+                            Ha participado en el equipo de traducción oficial al español reconocida por el SEI del
+                            libro CMMI-DEV v1.2 y 1.3. Ha participado como evaluador en convocatorias PEI, FINNOVA,
+                            FOMIX y de becas al extranjero en Zacatecas, e Internacionales H2020.
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p class="lead" style="text-align: justify;">
+                            Miembro del comité científico de diversos congresos y del RCEA de CONACYT.
+                            Ha publicado diversos artículos técnicos en: gestión de proyectos, implementación de
+                            mejora de procesos software, gestión del conocimiento, gestión del cambio, entornos
+                            multi-modelo y modelos y estándares de calidad.
+                            Autora del libro Metodología Multi-modelo para Implementar Mejoras de Procesos Software.
+                        </p>
+                        <p class="lead" style="text-align: justify;">
+                            Asesora de este trabajo de tesis.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bg-light" id="about_pepe">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <div class="row">
+                    <div class="col-8">
+                        <p class="lead" style="text-align: justify;">
+                            Mentor de Métodos Ágiles para la Secretaría de Educación
+                            Pública del Estado de Zacatecas (3
+                            años). Coordinador de la Maestría en Ingeniería de Software y profesor titular de
+                            Administración de Proyectos y Servicios en CIMAT, Zacatecas (9 años). Entrenador certificado
+                            por Lean Kanban University como AKT (Authorized Kanban Trainner) y ESPT (Enterprise Service
+                            Planning Trainer).
+                        </p>
+                        <p class="lead" style="text-align: justify;">
+                            Entrenador de Métodos de Innovación como (TRIZ y Seis Sombreros para Pensar).
+                            Elaboración y gestión de proyectos de innovación para obtener recursos de programas públicos
+                            como el Programa de Estímulos a la Innovación (6 proyectos cerrados con éxito) y PROSOFT de
+                            la Secretaría de Economía (3 proyectos cerrados con éxito).
+                        </p>
+                    </div>
+                    <div class="col-4">
+                        <img alt="José Guadalupe Hernández Reveles" class="img-fluid rounded" src="/static/images/jose.png">
+                        <p style="text-align: right;"><b>José Guadalupe Hernández Reveles</b></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p class="lead" style="text-align: justify;">
+                            Profesor de cátedra en el nivel preparatoria y en el nivel profesional en el área
+                            Tecnologías de Información e Innovación (15 años). Coordinador de Procesos e innovación en
+                            la Administración Pública Estatal en el Gobierno del Estado de Zacatecas (3 años).
+
+                        </p>
+                        <p class="lead" style="text-align: justify;">
+                            Desarrollo de proyectos de innovación para la mejora continúa de los procesos
+                            administrativos en la Administración Pública, Kioscos de Servicios Electrónicos del Estado
+                            de Zacatecas.
+                        </p>
+                        <p class="lead" style="text-align: justify">
+                            Auditor y Consultor en ISO 9000, responsable de la certificación de Oficialía Mayor de
+                            Gobierno, Instituto Estatal de Migración y la Junta de Conciliación y Arbitraje y la
+                            Contraloría Interna (5 años). Ingeniero en Sistemas, Maestro en Administración de Servicios
+                            de TI y Maestro en Innovación para el Desarrollo Empresarial. Todos por el Tec de Monterrey.
+                        </p>
+                        <p class="lead" style="text-align: justify;">
+                            Funge como tutor y experto consultor para la realización de este trabajo de tesis.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

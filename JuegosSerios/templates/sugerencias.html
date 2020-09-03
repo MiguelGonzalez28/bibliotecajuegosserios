@@ -1,0 +1,115 @@
+{% extends "base_site.html" %}
+
+{% load bootstrap4 %}
+
+{% block css %}
+    <link href="/static/css/sugerencias.css" rel="stylesheet">
+{% endblock %}
+
+{% block title %}<title>Sugerencias</title>{% endblock %}
+
+{% block navigation %}
+    <li class="nav-item">
+        <a class="nav-link js-scroll-trigger" href="{% url 'home' %}">Inicio</a>
+    </li>
+{% endblock %}
+
+{% block search %}
+{% endblock %}
+
+{% block content %}
+<section class="bg-light" id="sugerencias">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <form action="{% url 'resultados' %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <span style="color: red;">* </span>
+                        {% bootstrap_label "Sugerencias sobre:" label_for="categoria" %}
+                        <span>
+                            <a href="#"
+                               data-toggle="popover"
+                               data-trigger="focus"
+                               data-popover-content="#sugerencias_pop">
+                                <i class="far fa-question-circle"></i>
+                            </a>
+                        </span>
+                        {% bootstrap_field form.categoria show_label=False %}
+                    </div>
+                    <div class="form-group">
+                        {% bootstrap_label "Experiencia:" label_for="experiencia" %}
+                        <span>
+                            <a href="#"
+                               data-toggle="popover"
+                               data-trigger="focus"
+                               data-popover-content="#experiencia_pop">
+                                <i class="far fa-question-circle"></i>
+                            </a>
+                        </span>
+                        {% bootstrap_field form.experiencia show_label=False %}
+                    </div>
+                    <div class="form-group">
+                        {% bootstrap_label "Perfil:" label_for="perfil" %}
+                        <span>
+                            <a href="#"
+                               data-toggle="popover"
+                               data-trigger="focus"
+                               data-popover-content="#perfil_pop">
+                                <i class="far fa-question-circle"></i>
+                            </a>
+                        </span>
+                        {% bootstrap_field form.perfil show_label=False %}
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fas fa-search-plus"></i> Sugerencias
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div id="sugerencias_pop" hidden>
+    <div class="popover-body">
+        <p>Se refiere al tipo de sugerencias que se desea obtener.</p>
+        <ul>
+            <li><p><b>Objetivos de aprendizaje: </b>Son objetivos alineados a la certificación Team Kanban Practitioner</p></li>
+            <li><p><b>Juegos serios: </b>Sugerencias de juegos serios para enseñar Kanban y su relevancia</p></li>
+            <li><p><b>Otras sugerencias complementarias: </b>Actividades complementarias que podrían ser de ayuda</p></li>
+        </ul>
+    </div>
+</div>
+
+<div id="experiencia_pop" hidden>
+    <div class="popover-body">
+        <p>Si se conoce la experiencia de los participantes.</p>
+        <ul>
+            <li><p><b>Sin experiencia en Kanban: </b>Personas que no conocen nada del método Kanban</p></li>
+            <li><p><b>Poca experiencia en Kanban: </b>Personas que utilizan o conocen los conceptos básicos del método Kanban</p></li>
+        </ul>
+    </div>
+</div>
+
+<div id="perfil_pop" hidden>
+    <div class="popover-body">
+        <p>Si se conoce el perfil de los participantes o en su mayoría.</p>
+        <ul>
+            <li><p><b>Emprendedores: </b>Personas que comienzan o que quieren comenzar un negocio.</p></li>
+            <li><p><b>Miembros de empresas u organizaciones: </b>Personas que laboran en una empresa u organización.</p></li>
+            <li><p><b>Profesionistas de dominios específicos: </b>Profesionistas con un perfil afín.</p></li>
+            <li><p><b>Maestros: </b>Docentes que quieran impartir el curso o taller.</p></li>
+            <li><p><b>Estudiantes: </b>Estudiantes de nivel licenciatura, maestría o doctorado.</p></li>
+        </ul>
+        <p>Este campo es irrelevante para juegos serios u otras sugerencias complementarias.</p>
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block js %}
+    <script src="/static/js/pop_up.js"></script>
+{% endblock %}

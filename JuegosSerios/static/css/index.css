@@ -1,0 +1,27 @@
+h1, h2{
+    font-family: 'Song Myung';
+}
+
+p{
+    font-family: 'Song Myung';
+}
+
+.bg-welcome{
+    background-color: #0093E9;
+    background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
+}
+
+.carousel_img{
+    opacity: 0.5;
+}
+
+header {
+  padding: 156px 0 100px;
+}
+
+section {
+  padding-top: 70px;
+  padding-right: 0px;
+  padding-bottom: 30px;
+  padding-left: 0px;
+}

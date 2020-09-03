@@ -1,0 +1,37 @@
+.text-right{
+    padding: 10px;
+    margin: 10px;
+}
+
+.authors{
+    margin: 15px;
+}
+
+.features{
+    margin: 15px;
+}
+
+.card {
+    border: none;
+    background: #ffffff;
+    margin-top:  30px;
+}
+
+.card-text{
+    padding: 10px;
+    margin-top: 15px;
+}
+
+#todos_juegos_serios {
+  padding-top: 70px;
+  padding-right: 0px;
+  padding-bottom: 30px;
+  padding-left: 0px;
+}
+
+section {
+  padding-top: 156px;
+  padding-right: 0px;
+  padding-bottom: 30px;
+  padding-left: 0px;
+}

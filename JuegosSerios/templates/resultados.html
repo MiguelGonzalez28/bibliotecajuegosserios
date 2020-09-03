@@ -1,0 +1,700 @@
+{% extends "base_site.html" %}
+
+{% block css %}
+    <link href="/static/css/resultados.css" rel="stylesheet">
+{% endblock %}
+
+{% block title %}<title>Resultados</title>{% endblock %}
+
+{% block navigation %}
+    <li class="nav-item">
+        <a class="nav-link js-scroll-trigger" href="{% url 'home' %}">Inicio</a>
+    </li>
+{% endblock %}
+
+{% block search %}
+
+{% endblock %}
+
+{% block content %}
+    <section id="sugerencias">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <!-- Mode 1 -->
+                    {% if mode == 1 %}
+
+                        <div class="alert alert-info" role="alert">
+                            <div class="row justify-content-left">
+                                <h4>Experiencia: {{ experiencia }}</h4>
+                            </div>
+                            <div class="row justify-content-left">
+                                <h4>Perfil: {{ perfil }}</h4>
+                            </div>
+                            <div class="row justify-content-left">
+                                <h4>Sugerencias sobre: {{ categoria }}</h4>
+                            </div>
+                        </div>
+                        <br>
+                        <p align="right">
+                            <button class="btn btn-info btn-sm"
+                                    data-target="#mode_1"
+                                    data-toggle="modal">
+                                <i class="far fa-question-circle"></i> Ayuda
+                            </button>
+                        </p>
+                        <div class="row justify-content-center">
+                            {% for sugerencia in sugerencias %}
+                                <div class="col-lg-4">
+                                    <div class="card border-light">
+                                        {% if sugerencia.sugerencia == 'Entender los conceptos básicos de Kanban' %}
+                                            <img src="/static/images/objetivo_1.png" class="card-img-top" height="180" width="220">
+                                        {% elif sugerencia.sugerencia == 'Entender como funciona un sistema Kanban' %}
+                                            <img src="/static/images/objetivo_2.png" class="card-img-top" height="180" width="220">
+                                        {% elif sugerencia.sugerencia == 'Aprender los 3 principios de Change Management' %}
+                                            <img src="/static/images/objetivo_3.png" class="card-img-top" height="180" width="220">
+                                        {% elif sugerencia.sugerencia == 'Aprender los principios y practicas fundamentales de Kanban' %}
+                                            <img src="/static/images/objetivo_4.jpg" class="card-img-top" height="180" width="220">
+                                        {% elif sugerencia.sugerencia == 'Experimentar los beneficios de limitar el trabajo en proceso para mejorar el flujo de trabajo' %}
+                                            <img src="/static/images/objetivo_5.jpg" class="card-img-top" height="180" width="220">
+                                        {% elif sugerencia.sugerencia == 'Entender como implementar reuniones Kanban en torno al trabajo' %}
+                                            <img src="/static/images/objetivo_6.jpg" class="card-img-top" height="180" width="220">
+                                        {% elif sugerencia.sugerencia == 'Entender las métricas principales de Kanban' %}
+                                            <img src="/static/images/objetivo_7.jpg" class="card-img-top" height="180" width="220">
+                                        {% endif %}
+                                        <div class="card-body">
+                                            <p class="card-text text-center"> {{ sugerencia.sugerencia }} </p>
+                                            <h5>Relevancia</h5>
+                                            {% if sugerencia.importancia == 1 %}
+                                                <span class="fas fa-star"></span>
+                                                <span class="far fa-star"></span>
+                                                <span class="far fa-star"></span>
+                                            {% elif sugerencia.importancia == 2 %}
+                                                <span class="fas fa-star"></span>
+                                                <span class="fas fa-star"></span>
+                                                <span class="far fa-star"></span>
+                                            {% else %}
+                                                <span class="fas fa-star"></span>
+                                                <span class="fas fa-star"></span>
+                                                <span class="fas fa-star"></span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    <!-- End Mode 1 -->
+
+                    <!-- Mode 2 -->
+                    {% elif mode == 2%}
+
+                    <div class="alert alert-info" role="alert">
+                        <div class="row justify-content-left">
+                            <h4>Experiencia: {{ experiencia }}</h4>
+                        </div>
+                        <div class="row justify-content-left">
+                            <h4>Sugerencias sobre: {{ categoria }}</h4>
+                        </div>
+                    </div>
+                    <br>
+
+                    <p align="right">
+                            <button class="btn btn-info btn-sm"
+                                    data-target="#mode_2"
+                                    data-toggle="modal">
+                                <i class="far fa-question-circle"></i> Ayuda
+                            </button>
+                        </p>
+
+                    <div class="table-responsive">
+                        <table class="table table-striped align-middle text-center">
+                            <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Objetivo de aprendizaje</th>
+                                <th scope="col">Emprendedores</th>
+                                <th scope="col">Miembros de empresas u organizaciones</th>
+                                <th scope="col">Profesionistas de dominios especificos</th>
+                                <th scope="col">Maestros</th>
+                                <th scope="col">Estudiantes</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for sugerencia in sugerencias %}
+                            {% ifchanged sugerencia.sugerencia %}
+                            <tr>
+                                <th scope="row">
+                                    <div class="card border-light">
+                                        {% if sugerencia.sugerencia == 'Entender los conceptos básicos de Kanban' %}
+                                            <img class="card-img-top" height="110" src="/static/images/objetivo_1.png" width="110">
+                                        {% elif sugerencia.sugerencia == 'Entender como funciona un sistema Kanban' %}
+                                            <img class="card-img-top" height="110" src="/static/images/objetivo_2.png" width="110">
+                                        {% elif sugerencia.sugerencia == 'Aprender los 3 principios de Change Management' %}
+                                            <img class="card-img-top" height="110" src="/static/images/objetivo_3.png" width="110">
+                                        {% elif sugerencia.sugerencia == 'Aprender los principios y practicas fundamentales de Kanban' %}
+                                            <img class="card-img-top" height="110" src="/static/images/objetivo_4.jpg" width="110">
+                                        {% elif sugerencia.sugerencia == 'Experimentar los beneficios de limitar el trabajo en proceso para mejorar el flujo de trabajo' %}
+                                            <img class="card-img-top" height="110" src="/static/images/objetivo_5.jpg" width="110">
+                                        {% elif sugerencia.sugerencia == 'Entender como implementar reuniones Kanban en torno al trabajo' %}
+                                            <img class="card-img-top" height="110" src="/static/images/objetivo_6.jpg" width="110">
+                                        {% elif sugerencia.sugerencia == 'Entender las métricas principales de Kanban' %}
+                                            <img class="card-img-top" height="110" src="/static/images/objetivo_7.jpg" width="110">
+                                        {% endif %}
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="card-text text-center"> {{ sugerencia.sugerencia }} </p>
+                                    </div>
+                                </th>
+                                {% endifchanged %}
+                                <td class="align-middle text-center">
+                                    <p>Relevancia: </p>
+                                    {% if sugerencia.importancia == 1 %}
+                                    <span class="fas fa-star"></span>
+                                    <span class="far fa-star"></span>
+                                    <span class="far fa-star"></span>
+                                    {% elif sugerencia.importancia == 2 %}
+                                    <span class="fas fa-star"></span>
+                                    <span class="fas fa-star"></span>
+                                    <span class="far fa-star"></span>
+                                    {% else %}
+                                    <span class="fas fa-star"></span>
+                                    <span class="fas fa-star"></span>
+                                    <span class="fas fa-star"></span>
+                                    {% endif %}
+                                </td>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- End Mode 2 -->
+
+                    <!-- Mode 3 -->
+                    {% elif mode == 3%}
+
+                    <div class="alert alert-info" role="alert">
+                        <div class="row justify-content-left">
+                            <h4>Perfil: {{ perfil }}</h4>
+                        </div>
+                        <div class="row justify-content-left">
+                            <h4>Sugerencias sobre: {{ categoria }}</h4>
+                        </div>
+                    </div>
+                    <br>
+
+                    <p align="right">
+                            <button class="btn btn-info btn-sm"
+                                    data-target="#mode_3"
+                                    data-toggle="modal">
+                                <i class="far fa-question-circle"></i> Ayuda
+                            </button>
+                        </p>
+
+                    <div class="table-responsive">
+                        <table class="table table-striped align-middle text-center">
+                            <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Objetivo de aprendizaje</th>
+                                <th scope="col">Sin experiencia en Kanban</th>
+                                <th scope="col">Poca experiencia en Kanban</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for sugerencia in sugerencias %}
+                            {% ifchanged sugerencia.sugerencia %}
+                            <tr>
+                                <th scope="row">
+                                    <p class="align-middle text-center"> {{ sugerencia.sugerencia }} </p>
+                                </th>
+                                {% endifchanged %}
+                                <td class="align-middle text-center">
+                                    <p>Relevancia: </p>
+                                    {% if sugerencia.importancia == 1 %}
+                                    <span class="fas fa-star"></span>
+                                    <span class="far fa-star"></span>
+                                    <span class="far fa-star"></span>
+                                    {% elif sugerencia.importancia == 2 %}
+                                    <span class="fas fa-star"></span>
+                                    <span class="fas fa-star"></span>
+                                    <span class="far fa-star"></span>
+                                    {% else %}
+                                    <span class="fas fa-star"></span>
+                                    <span class="fas fa-star"></span>
+                                    <span class="fas fa-star"></span>
+                                    {% endif %}
+                                </td>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- End Mode 3 -->
+
+                    <!-- Mode 4 -->
+                    {% elif mode == 4%}
+
+                    <div class="alert alert-info" role="alert">
+                        <div class="row justify-content-left">
+                            <h4>Sugerencias sobre: {{ categoria }}</h4>
+                        </div>
+                    </div>
+                    <br>
+
+                    {% regroup sugerencias by experiencia as sug_by_exp %}
+                        {% for experiencia in sug_by_exp %}
+
+                            <div class="alert alert-info" role="alert">
+                                <div class="row justify-content-left">
+                                    <h4>Experiencia: {{ experiencia.grouper }}</h4>
+                                </div>
+                            </div>
+                            <br>
+
+                    <p align="right">
+                            <button class="btn btn-info btn-sm"
+                                    data-target="#mode_4"
+                                    data-toggle="modal">
+                                <i class="far fa-question-circle"></i> Ayuda
+                            </button>
+                        </p>
+
+                    <div class="table-responsive">
+                        <table class="table table-striped align-middle text-center">
+                            <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Objetivo de aprendizaje</th>
+                                <th scope="col">Emprendedores</th>
+                                <th scope="col">Miembros de empresas u organizaciones</th>
+                                <th scope="col">Profesionistas de dominios especificos</th>
+                                <th scope="col">Maestros</th>
+                                <th scope="col">Estudiantes</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for sugerencia in experiencia.list %}
+                            {% ifchanged sugerencia.sugerencia %}
+                            <tr>
+                                <th scope="row">
+                                    <div class="card border-light">
+                                        {% if sugerencia.sugerencia == 'Entender los conceptos básicos de Kanban' %}
+                                            <img class="card-img-top" height="110" src="/static/images/objetivo_1.png" width="110">
+                                        {% elif sugerencia.sugerencia == 'Entender como funciona un sistema Kanban' %}
+                                            <img class="card-img-top" height="110" src="/static/images/objetivo_2.png" width="110">
+                                        {% elif sugerencia.sugerencia == 'Aprender los 3 principios de Change Management' %}
+                                            <img class="card-img-top" height="110" src="/static/images/objetivo_3.png" width="110">
+                                        {% elif sugerencia.sugerencia == 'Aprender los principios y practicas fundamentales de Kanban' %}
+                                            <img class="card-img-top" height="110" src="/static/images/objetivo_4.jpg" width="110">
+                                        {% elif sugerencia.sugerencia == 'Experimentar los beneficios de limitar el trabajo en proceso para mejorar el flujo de trabajo' %}
+                                            <img class="card-img-top" height="110" src="/static/images/objetivo_5.jpg" width="110">
+                                        {% elif sugerencia.sugerencia == 'Entender como implementar reuniones Kanban en torno al trabajo' %}
+                                            <img class="card-img-top" height="110" src="/static/images/objetivo_6.jpg" width="110">
+                                        {% elif sugerencia.sugerencia == 'Entender las métricas principales de Kanban' %}
+                                            <img class="card-img-top" height="110" src="/static/images/objetivo_7.jpg" width="110">
+                                        {% endif %}
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="card-text text-center"> {{ sugerencia.sugerencia }} </p>
+                                    </div>
+                                </th>
+                                {% endifchanged %}
+                                <td class="align-middle text-center">
+                                    <p>Relevancia: </p>
+                                    {% if sugerencia.importancia == 1 %}
+                                    <span class="fas fa-star"></span>
+                                    <span class="far fa-star"></span>
+                                    <span class="far fa-star"></span>
+                                    {% elif sugerencia.importancia == 2 %}
+                                    <span class="fas fa-star"></span>
+                                    <span class="fas fa-star"></span>
+                                    <span class="far fa-star"></span>
+                                    {% else %}
+                                    <span class="fas fa-star"></span>
+                                    <span class="fas fa-star"></span>
+                                    <span class="fas fa-star"></span>
+                                    {% endif %}
+                                </td>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                        {% endfor %}
+                    <!-- End Mode  4-->
+
+                    <!-- Mode 5 -->
+                    {% elif mode == 5%}
+
+                    <div class="alert alert-info" role="alert">
+                        <div class="row justify-content-left">
+                            <h4>Experiencia: {{ experiencia }}</h4>
+                        </div>
+                        <div class="row justify-content-left">
+                            <h4>Sugerencias sobre: {{ categoria }}</h4>
+                        </div>
+                    </div>
+                    <br>
+
+                    <p align="right">
+                            <button class="btn btn-info btn-sm"
+                                    data-target="#mode_5"
+                                    data-toggle="modal">
+                                <i class="far fa-question-circle"></i> Ayuda
+                            </button>
+                        </p>
+
+                    {% regroup sugerencias by experiencia as sug_by_exp %}
+                        {% for experiencia in sug_by_exp %}
+                    <div class="table-responsive">
+                        <table class="table table-striped align-middle text-center">
+                            <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Sugerencia</th>
+                                <th scope="col">Todos los perfiles</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for sugerencia in experiencia.list %}
+                            {% ifchanged sugerencia.sugerencia and sugerencia.importancia %}
+                            <tr>
+                                <th scope="row">
+                                    {% if sugerencia.sugerencia != '' %}
+
+                                        {% if sugerencia.sugerencia == 'GetKanban (v5.0)' %}
+                                            <a class="card-link" href="{% url 'detalles' 1 %}">{{ sugerencia.sugerencia }}</a>
+                                        {% elif sugerencia.sugerencia == 'GetKanban (v2.0)' %}
+                                            <a class="card-link" href="{% url 'detalles' 2 %}">{{ sugerencia.sugerencia }}</a>
+                                        {% elif sugerencia.sugerencia == 'Ask Kanban' %}
+                                            <a class="card-link" href="{% url 'detalles' 4 %}">{{ sugerencia.sugerencia }}</a>
+                                        {% elif sugerencia.sugerencia == 'Kanban Pizza Game' %}
+                                            <a class="card-link" href="{% url 'detalles' 5 %}">{{ sugerencia.sugerencia }}</a>
+                                        {% elif sugerencia.sugerencia == 'Decoration Kanban' %}
+                                            <a class="card-link" href="{% url 'detalles' 6 %}">{{ sugerencia.sugerencia }}</a>
+                                        {% elif sugerencia.sugerencia == 'The Penny Game' %}
+                                            <a class="card-link" href="{% url 'detalles' 7 %}">{{ sugerencia.sugerencia }}</a>
+                                        {% elif sugerencia.sugerencia == 'Sudokuban' %}
+                                            <a class="card-link" href="{% url 'detalles' 8 %}">{{ sugerencia.sugerencia }}</a>
+                                        {% elif sugerencia.sugerencia == 'Kanban Tetris' %}
+                                            <a class="card-link" href="{% url 'detalles' 9 %}">{{ sugerencia.sugerencia }}</a>
+                                        {% elif sugerencia.sugerencia == 'Kanban 1s Game' %}
+                                            <a class="card-link" href="{% url 'detalles' 10 %}">{{ sugerencia.sugerencia }}</a>
+                                        {% elif sugerencia.sugerencia == 'A Dice Game' %}
+                                            <a class="card-link" href="{% url 'detalles' 11 %}">{{ sugerencia.sugerencia }}</a>
+                                        {% elif sugerencia.sugerencia == 'Featureban (v3.0)' %}
+                                            <a class="card-link" href="{% url 'detalles' 12 %}">{{ sugerencia.sugerencia }}</a>
+                                        {% elif sugerencia.sugerencia == 'Paper Airplane Game' %}
+                                            <a class="card-link" href="{% url 'detalles' 13 %}">{{ sugerencia.sugerencia }}</a>
+                                        {% else  %}
+                                            <p class="text-center"> {{ sugerencia.sugerencia }} </p>
+                                        {% endif %}
+
+                                    {% endif %}
+                                </th>
+                                <td class="align-middle text-center">
+                                    <p>Relevancia: </p>
+                                    {% if sugerencia.importancia == 1 %}
+                                    <span class="fas fa-star"></span>
+                                    <span class="far fa-star"></span>
+                                    <span class="far fa-star"></span>
+                                    {% elif sugerencia.importancia == 2 %}
+                                    <span class="fas fa-star"></span>
+                                    <span class="fas fa-star"></span>
+                                    <span class="far fa-star"></span>
+                                    {% else %}
+                                    <span class="fas fa-star"></span>
+                                    <span class="fas fa-star"></span>
+                                    <span class="fas fa-star"></span>
+                                    {% endif %}
+                                </td>
+                                {% endifchanged %}
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                        {% endfor %}
+                    <!-- End Mode 5 -->
+
+                    <!-- Mode 6 -->
+                    {% elif mode == 6%}
+
+                    <div class="alert alert-info" role="alert">
+                        <div class="row justify-content-left">
+                            <h4>Sugerencias sobre: {{ categoria }}</h4>
+                        </div>
+                    </div>
+                    <br>
+
+                    {% regroup sugerencias by experiencia as sug_by_exp %}
+                    {% for experiencia in sug_by_exp %}
+
+                    <div class="alert alert-info" role="alert">
+                        <div class="row justify-content-left">
+                            <h4>Experiencia: {{ experiencia.grouper }}</h4>
+                        </div>
+                    </div>
+                    <br>
+
+                    <p align="right">
+                            <button class="btn btn-info btn-sm"
+                                    data-target="#mode_6"
+                                    data-toggle="modal">
+                                <i class="far fa-question-circle"></i> Ayuda
+                            </button>
+                        </p>
+
+                    <div class="table-responsive">
+                        <table class="table table-striped align-middle text-center">
+                            <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Sugerencia</th>
+                                <th scope="col">Todos los perfiles</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for sugerencia in experiencia.list %}
+                            {% ifchanged sugerencia.sugerencia %}
+                            <tr>
+                                <th scope="row">
+                                    {% if sugerencia.sugerencia != '' %}
+
+                                        {% if sugerencia.sugerencia == 'GetKanban (v5.0)' %}
+                                            <a class="card-link" href="{% url 'detalles' 1 %}">{{ sugerencia.sugerencia }}</a>
+                                        {% elif sugerencia.sugerencia == 'GetKanban (v2.0)' %}
+                                            <a class="card-link" href="{% url 'detalles' 2 %}">{{ sugerencia.sugerencia }}</a>
+                                        {% elif sugerencia.sugerencia == 'Ask Kanban' %}
+                                            <a class="card-link" href="{% url 'detalles' 4 %}">{{ sugerencia.sugerencia }}</a>
+                                        {% elif sugerencia.sugerencia == 'Kanban Pizza Game' %}
+                                            <a class="card-link" href="{% url 'detalles' 5 %}">{{ sugerencia.sugerencia }}</a>
+                                        {% elif sugerencia.sugerencia == 'Decoration Kanban' %}
+                                            <a class="card-link" href="{% url 'detalles' 6 %}">{{ sugerencia.sugerencia }}</a>
+                                        {% elif sugerencia.sugerencia == 'The Penny Game' %}
+                                            <a class="card-link" href="{% url 'detalles' 7 %}">{{ sugerencia.sugerencia }}</a>
+                                        {% elif sugerencia.sugerencia == 'Sudokuban' %}
+                                            <a class="card-link" href="{% url 'detalles' 8 %}">{{ sugerencia.sugerencia }}</a>
+                                        {% elif sugerencia.sugerencia == 'Kanban Tetris' %}
+                                            <a class="card-link" href="{% url 'detalles' 9 %}">{{ sugerencia.sugerencia }}</a>
+                                        {% elif sugerencia.sugerencia == 'Kanban 1s Game' %}
+                                            <a class="card-link" href="{% url 'detalles' 10 %}">{{ sugerencia.sugerencia }}</a>
+                                        {% elif sugerencia.sugerencia == 'A Dice Game' %}
+                                            <a class="card-link" href="{% url 'detalles' 11 %}">{{ sugerencia.sugerencia }}</a>
+                                        {% elif sugerencia.sugerencia == 'Featureban (v3.0)' %}
+                                            <a class="card-link" href="{% url 'detalles' 12 %}">{{ sugerencia.sugerencia }}</a>
+                                        {% elif sugerencia.sugerencia == 'Paper Airplane Game' %}
+                                            <a class="card-link" href="{% url 'detalles' 13 %}">{{ sugerencia.sugerencia }}</a>
+                                        {% else  %}
+                                            <p class="text-center"> {{ sugerencia.sugerencia }} </p>
+                                        {% endif %}
+                                    {% endif %}
+                                </th>
+                                <td class="align-middle text-center">
+                                    <p>Relevancia: </p>
+                                    {% if sugerencia.importancia == 1 %}
+                                    <span class="fas fa-star"></span>
+                                    <span class="far fa-star"></span>
+                                    <span class="far fa-star"></span>
+                                    {% elif sugerencia.importancia == 2 %}
+                                    <span class="fas fa-star"></span>
+                                    <span class="fas fa-star"></span>
+                                    <span class="far fa-star"></span>
+                                    {% else %}
+                                    <span class="fas fa-star"></span>
+                                    <span class="fas fa-star"></span>
+                                    <span class="fas fa-star"></span>
+                                    {% endif %}
+                                </td>
+                                {% endifchanged %}
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% endfor %}
+                    <!-- End Mode 6 -->
+
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+<div class="modal fade" id="mode_1" tabindex="-1" role="dialog" aria-labelledby="mode_1_title" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="mode_1_title">Objetivos de aprendizaje según experiencia y perfil</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <div class="modal-body">
+            <p>
+                Aquí se muestran todos los objetivos de aprendizaje y su relevancia basado en la consulta seleccionada.
+            </p>
+            <div class="row justify-content-center">
+                <img class="img-fluid" src="/static/images/mode_1_modal_help.png">
+            </div>
+            <p>
+                En esta imagen se muestra que por ejemplo, para ese perfil y experiencia es más relevante enfocarse en
+                entender los conceptos básicos de Kanban y así sucesivamente hasta los objetivos de menor relevancia.
+            </p>
+        </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="mode_2" tabindex="-1" role="dialog" aria-labelledby="mode_2_title" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="mode_2_title">Objetivos de aprendizaje según experiencia</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <div class="modal-body">
+            <p>
+                Según la experiencia seleccionada se muestra la relevancia de cada objetivo para cada perfil en una
+                tabla.
+            </p>
+            <div class="row justify-content-center">
+                <img class="img-fluid" src="/static/images/mode_2_modal_help.png">
+            </div>
+            <p>
+                En esta imagen podemos tomar como ejemplo el primer objetivo de aprendizaje que aparece "Aprender los
+                3 principios de Change Management" donde se aprecia que es más relevante para un Miembro de una empresa
+                u organización que para los otros perfiles.
+            </p>
+        </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="mode_3" tabindex="-1" role="dialog" aria-labelledby="mode_3_title" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="mode_3_title">Objetivos de aprendizaje basado en el perfil</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+            Según el perfil seleccionado se muestra una tabla con los objetivos de aprendizaje y su relevancia.
+        </p>
+        <div class="row justify-content-center">
+            <img class="img-fluid" src="/static/images/mode_3_modal_help.png">
+        </div>
+        <p>
+            En el esta imagen se puede apreciar que por ejemplo "Entender los conceptos básicos de Kanban" es un poco
+            más relevante para participantes de ese perfil sin experiencia que los que tienen poca experiencia en
+            Kanban.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="mode_4" tabindex="-1" role="dialog" aria-labelledby="mode_4_title" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="mode_4_title">Objetivos de aprendizaje y su relevancia para cada perfil</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+            En este apartado se muestran dos tablas, una para participantes con "Poca experiencia en Kanban" y otra para
+            participantes "Sin experiencia en Kanban". En ambas tablas, se listan los objetivos de aprendizaje y para
+            cada perfil se describe su relevancia.
+        </p>
+        <div class="row justify-content-center">
+            <img class="img-fluid" src="/static/images/mode_4_modal_help.png">
+        </div>
+        <p>
+            En este ejemplo, el objetivo de aprendizaje "Entender los conceptos básicos de Kanban" es un poco más
+            relevante para "Maestros" que para otro perfil y el objetivo "Entender como funciona un sistema Kanban" es
+            igual para todos los perfiles que comparten la misma experiencia.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="mode_5" tabindex="-1" role="dialog" aria-labelledby="mode_5_title" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="mode_5_title">
+            Sugerencias sobre juegos serios u otras sugerencias complementarias según experiencia
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+            En este apartado se muestran una tabla con sugerencias de juegos serios u otras sugerencias complementarias
+            que podrían ser de ayuda para participantes de todos los perfiles que comparten experiencia similar en
+            Kanban.
+        </p>
+        <div class="row justify-content-center">
+            <img class="img-fluid" src="/static/images/mode_5_modal_help.png">
+        </div>
+        <p>
+            En este ejemplo se muestran sugerencias sobre juegos serios, donde se recomienda según la experiencia
+            seleccionada, implementar los juegos con mayor relevancia.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="mode_6" tabindex="-1" role="dialog" aria-labelledby="mode_6_title" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="mode_6_title">
+            Sugerencias sobre juegos serios u otras sugerencias complementarias
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+            Aquí se muestran dos tablas con sugerencias de juegos serios u otras sugerencias complementarias y su
+            relevancia aplicables a todos los perfiles.
+        </p>
+        <div class="row justify-content-center">
+            <img class="img-fluid" src="/static/images/mode_6_modal_help.png">
+        </div>
+        <p>
+            En este ejemplo tenemos sugerencias de otras actividades complementarias como "Utilizar otro material de
+            apoyo" y su relevancia para participantes que comparten la misma experiencia en Kanban.
+        </p>
+        <p>
+            Estas actividades complementarias ayudan a cubrir o reforzar objetivos de aprendizaje que los juegos serios
+            no hacen.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

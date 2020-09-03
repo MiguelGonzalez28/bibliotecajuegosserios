@@ -1,0 +1,1053 @@
+{% extends "base_site.html" %}
+
+{% block css %}
+    <link href="/static/css/detalles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Almendra SC">
+    <link href='https://fonts.googleapis.com/css?family=Charm' rel='stylesheet'>
+    <style type="text/css">
+        .bg-cover {
+            background-image: url('/static/images/game_{{ juego_serio.id  }}.png');
+        }
+    </style>
+{% endblock %}
+
+{% block title %}<title>Detalles de {{ juego_serio.nombre }}</title>{% endblock %}
+
+{% block navigation %}
+    <li class="nav-item">
+        <a class="nav-link js-scroll-trigger" href="{% url 'home' %}">Inicio</a>
+    </li>
+{% endblock %}
+
+{% block content %}
+<section class="bg-light" id="detalles_juego_serio_descripcion">
+    <div class="jumbotron jumbotron bg-cover col-lg-10 mx-auto">
+        <div class="overlay"></div>
+        <div class="container">
+            <h1 class="display-3 mb-1">{{juego_serio.nombre | upper}}</h1>
+            <p class="lead">{{juego_serio.descripcion}}</p>
+        </div>
+    </div>
+    <div class="container col-lg-10 mx-auto">
+        <div class="row justify-content-center"
+            ><h1 class="titulo descripcion">Autor(es)</h1>
+            <span>
+                <a data-popover-content="#autores_pop"
+                   data-toggle="popover"
+                   data-trigger="focus"
+                   href="javascript:void(0);">
+                    <i class="far fa-question-circle"></i>
+                </a>
+            </span>
+        </div>
+        <div class="row justify-content-around">
+            {% if autores %}
+                {% for autor in autores %}
+                <div class="d-flex flex-column align-items-center">
+                    <div class="p-2"><i class="fas fa-user-tie descripcion" style="font-size:150px;"></i></div>
+                    <div class="p-2">
+                        <span class="texto_detalle" style="font-size:30px;">
+                                {{ autor.nombre_completo | default_if_none:"Desconocido" }}
+                        </span>
+                    </div>
+                </div>
+            {% endfor %}
+            {% else %}
+                <div class="d-flex flex-column align-items-center">
+                    <div class="p-2"><i class="fas fa-user-tie descripcion" style="font-size:150px;"></i></div>
+                    <div class="p-2">
+                        <span class="texto_detalle" style="font-size:30px;">
+                                Desconocido
+                        </span>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<section id="detalles_juego_serio_caracteristicas">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 mx-auto">
+            <div class="row justify-content-center">
+                <h1 class="titulo caracteristicas">Características</h1>
+                <span>
+                    <a data-popover-content="#caracteristicas_pop"
+                       data-toggle="popover"
+                       data-trigger="focus"
+                       href="javascript:void(0);">
+                        <i class="far fa-question-circle"></i>
+                    </a>
+                </span>
+            </div>
+
+            <div class="row">
+                <div class="col-3">
+                    <div class="d-flex flex-column align-items-center">
+                        <div class="p-2"><i class="far fa-clock caracteristicas" style="font-size:150px;"></i></div>
+                        <div class="p-2">
+                            <span class="texto_detalle" style="font-size:30px;">
+                                {{ juego_serio.duracion | default_if_none:"0" }} min
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="d-flex flex-column align-items-center">
+                        <div class="p-2"><i class="fas fa-dollar-sign caracteristicas" style="font-size:150px;"></i></div>
+                        <div class="p-2">
+                            <span class="texto_detalle" style="font-size:30px;">
+                                {{ juego_serio.licencia | default_if_none:"Licencia desconocida" }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="d-flex flex-column align-items-center">
+                        <div class="p-2"><i class="fas fa-gamepad caracteristicas" style="font-size:150px;"></i></div>
+                        <div class="p-2">
+                            <span class="texto_detalle" style="font-size:30px;">
+                                {{ juego_serio.tipo_actividad }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-6">
+                    <div class="d-flex flex-column align-items-center">
+                        <div class="p-2"><i class="far fa-dizzy caracteristicas" style="font-size:150px;"></i></div>
+                        <div class="p-2">
+                            <span class="texto_detalle" style="font-size:30px;">
+                                {{ juego_serio.complejidad}}
+                            </span>
+                        </div>
+                        <div class="p-2">
+                            <div class="alert alert-success" role="alert">
+                                Complejidad de implementación
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="d-flex flex-column align-items-center">
+                        <div class="p-2"><i class="far fa-frown caracteristicas" style="font-size:150px;"></i></div>
+                        <div class="p-2">
+                            <span class="texto_detalle" style="font-size:30px;">
+                                {{ juego_serio.dificultad }}
+                            </span>
+                        </div>
+                        <div class="p-2">
+                            <div class="alert alert-success" role="alert">
+                                Dificultad para entender las reglas
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-3">
+                    <div class="d-flex flex-column align-items-center">
+                        <div class="p-2"><i class="far fa-comment-alt caracteristicas" style="font-size:150px;"></i></div>
+                        <div class="p-2">
+                            <span class="texto_detalle" style="font-size:30px;">
+                                {{ juego_serio.idioma }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="d-flex flex-column align-items-center">
+                        <div class="p-2"><i class="far fa-list-alt caracteristicas" style="font-size:150px;"></i></div>
+                        <div class="p-2">
+                            <span class="texto_detalle" style="font-size:30px;">
+                                {% if juego_serio.pre_requisitos %}
+                                    {{ juego_serio.pre_requisitos }}
+                                {% else %}
+                                    Ninguno
+                                {% endif %}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="d-flex flex-column align-items-center">
+                        <div class="p-2"><i class="fas fa-users caracteristicas" style="font-size:150px;"></i></div>
+                        <div class="p-2">
+                            <span class="texto_detalle" style="font-size:30px;">
+                                {{ juego_serio.tipo_juego }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+      </div>
+    </div>
+</section>
+
+<section class="bg-light" id="detalles_juego_serio_enlaces">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <div class="row justify-content-center">
+                    <h1 class="titulo enlaces">Enlaces</h1>
+                    <span>
+                        <a data-popover-content="#enlaces_pop"
+                           data-toggle="popover"
+                           data-trigger="focus"
+                           href="javascript:void(0);">
+                            <i class="far fa-question-circle"></i>
+                        </a>
+                    </span>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="d-flex flex-column align-items-center">
+                            {% if juego_serio.documentacion %}
+                                <div class="p-2">
+                                    <a href="{{ juego_serio.documentacion }}" target="_blank">
+                                        <i class="fas fa-globe-americas enlaces" style="font-size:150px;"></i>
+                                    </a>
+                                </div>
+                                <div class="p-2">
+                                <span class="texto_detalle" style="font-size:30px;">
+                                    <a href="{{ juego_serio.documentacion }}" target="_blank">
+                                        Página oficial
+                                    </a>
+                                </span>
+                                </div>
+                            {% else %}
+                                <div class="p-2">
+                                    <i class="fas fa-globe-americas enlaces" style="font-size:150px;"></i>
+                                </div>
+                                <div class="p-2">
+                                <span class="texto_detalle" style="font-size:30px;">
+                                    No tiene página oficial
+                                </span>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="d-flex flex-column align-items-center">
+                            {% if juego_serio.manuales %}
+                                <div class="p-2">
+                                    <a href="{{ juego_serio.manuales }}" target="_blank">
+                                        <i class="far fa-file-alt enlaces" style="font-size:150px;"></i>
+                                    </a>
+                                </div>
+                                <div class="p-2">
+                                <span class="texto_detalle" style="font-size:30px;">
+                                    <a href="{{ juego_serio.manuales }}" target="_blank">
+                                        Manuales
+                                    </a>
+                                </span>
+                                </div>
+                            {% else %}
+                                <div class="p-2">
+                                    <i class="far fa-file-alt enlaces" style="font-size:150px;"></i>
+                                </div>
+                                <div class="p-2">
+                                <span class="texto_detalle" style="font-size:30px;">
+                                    Sin acceso
+                                </span>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="detalles_juego_serio_video">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <div class="row justify-content-center">
+                    <h1 class="titulo video">Video(s)</h1>
+                    <span>
+                        <a data-popover-content="#video_pop"
+                           data-toggle="popover"
+                           data-trigger="focus"
+                           href="javascript:void(0);">
+                            <i class="far fa-question-circle"></i>
+                        </a>
+                    </span>
+                </div>
+                <div class="row justify-content-center">
+                    {% if juego_serio.video %}
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe allowfullscreen
+                                frameborder="0"
+                                src="{{ juego_serio.video }}"></iframe>
+                    </div>
+                    {% else %}
+                    <div class="d-flex flex-column align-items-center">
+                        <div class="p-2"><i class="fab fa-youtube video" style="font-size:150px;"></i></div>
+                        <div class="p-2">
+                                <span class="texto_detalle" style="font-size:30px;">
+                                    No disponible
+                                </span>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bg-light" id="detalles_juego_serio_jugadores">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <div class="row justify-content-center">
+                    <h1 class="titulo jugadores">Jugadores</h1>
+                    <span>
+                        <a data-popover-content="#jugadores_pop"
+                           data-toggle="popover"
+                           data-trigger="focus"
+                           href="javascript:void(0);">
+                            <i class="far fa-question-circle"></i>
+                        </a>
+                    </span>
+                </div>
+                {% for jugador in jugadores %}
+                <div class="row">
+                    <div class="col-6">
+                        <div class="d-flex flex-column align-items-center">
+                            <div class="p-2">
+                                <i class="fas fa-user-minus jugadores" style="font-size:150px;"></i>
+                            </div>
+                            <div class="p-2">
+                                <span class="texto_detalle" style="font-size:30px;">
+                                        {{ jugador.min }} mínimo
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="d-flex flex-column align-items-center">
+                            <div class="p-2">
+                                <i class="fas fa-user-plus jugadores" style="font-size:150px;"></i>
+                            </div>
+                            <div class="p-2">
+                                <span class="texto_detalle" style="font-size:30px;">
+                                        {% if jugador.max %}
+                                            {{ jugador.max }} máximo
+                                        {% else %}
+                                            Hacer grupos
+                                        {% endif %}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="detalles_juego_serio_objetivos">
+    <div class="container">
+    <div class="row">
+        <div class="col-lg-10 mx-auto">
+            <div class="row justify-content-center">
+                <h1 class="titulo objetivos">Objetivos</h1>
+                <span>
+                <a data-popover-content="#objetivos_pop"
+                   data-toggle="popover"
+                   data-trigger="focus"
+                   href="javascript:void(0);">
+                    <i class="far fa-question-circle"></i>
+                </a>
+            </span>
+            </div>
+
+            {% for objetivo in objetivos %}
+            <div class="row justify-content-center">
+                <div class="col-6">
+                    <h3 class="texto_detalle">1.- Entender los conceptos básicos de Kanban:</h3>
+                    {% if objetivo.objetivo_1 == 0 %}
+                    <div class="progress" style="height: 20px;">
+                        <div aria-valuemax="100"
+                             aria-valuemin="0"
+                             aria-valuenow="0"
+                             class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
+                             role="progressbar">
+                            No lo cubre
+                        </div>
+                    </div>
+                    {% elif objetivo.objetivo_1 == 0.5 %}
+                    <div class="progress" style="height: 20px;">
+                        <div aria-valuemax="100"
+                             aria-valuemin="0"
+                             aria-valuenow="50"
+                             class="progress-bar progress-bar-striped progress-bar-animated bg-warning"
+                             role="progressbar"
+                             style="width: 50%;">
+                            Parcialmente lo cubre
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="progress" style="height: 20px;">
+                        <div aria-valuemax="100"
+                             aria-valuemin="0"
+                             aria-valuenow="100"
+                             class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+                             role="progressbar"
+                             style="width: 100%;">
+                            Totalmente cubierto
+                        </div>
+                    </div>
+                    {% endif %}
+                    <br>
+                    <br>
+                </div>
+                <div class="col-6">
+                    <h3 class="texto_detalle">2.- Entender como funciona un sistema Kanban:</h3>
+                    {% if objetivo.objetivo_2 == 0 %}
+                    <div class="progress" style="height: 20px;">
+                        <div aria-valuemax="100"
+                             aria-valuemin="0"
+                             aria-valuenow="0"
+                             class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
+                             role="progressbar">
+                            No lo cubre
+                        </div>
+                    </div>
+                    {% elif objetivo.objetivo_2 == 0.5 %}
+                    <div class="progress" style="height: 20px;">
+                        <div aria-valuemax="100"
+                             aria-valuemin="0"
+                             aria-valuenow="50"
+                             class="progress-bar progress-bar-striped progress-bar-animated bg-warning"
+                             role="progressbar"
+                             style="width: 50%;">
+                            Parcialmente lo cubre
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="progress" style="height: 20px;">
+                        <div aria-valuemax="100"
+                             aria-valuemin="0"
+                             aria-valuenow="100"
+                             class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+                             role="progressbar"
+                             style="width: 100%;">
+                            Totalmente cubierto
+                        </div>
+                    </div>
+                    {% endif %}
+                    <br>
+                    <br>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-6">
+                    <h3 class="texto_detalle">3.- Aprender los 3 principios de Change Management: </h3>
+                    {% if objetivo.objetivo_3 == 0 %}
+                    <div class="progress" style="height: 20px;">
+                        <div aria-valuemax="100"
+                             aria-valuemin="0"
+                             aria-valuenow="0"
+                             class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
+                             role="progressbar">
+                            No lo cubre
+                        </div>
+                    </div>
+                    {% elif objetivo.objetivo_3 == 0.5 %}
+                    <div class="progress" style="height: 20px;">
+                        <div aria-valuemax="100"
+                             aria-valuemin="0"
+                             aria-valuenow="50"
+                             class="progress-bar progress-bar-striped progress-bar-animated bg-warning"
+                             role="progressbar"
+                             style="width: 50%;">
+                            Parcialmente lo cubre
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="progress" style="height: 20px;">
+                        <div aria-valuemax="100"
+                             aria-valuemin="0"
+                             aria-valuenow="100"
+                             class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+                             role="progressbar"
+                             style="width: 100%;">
+                            Totalmente cubierto
+                        </div>
+                    </div>
+                    {% endif %}
+                    <br>
+                    <br>
+                </div>
+                <div class="col-6">
+                    <h3 class="texto_detalle">4.- Aprender los principios y prácticas fundamentales de Kanban:</h3>
+                    {% if objetivo.objetivo_4 == 0 %}
+                    <div class="progress" style="height: 20px;">
+                        <div aria-valuemax="100"
+                             aria-valuemin="0"
+                             aria-valuenow="0"
+                             class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
+                             role="progressbar">
+                            No lo cubre
+                        </div>
+                    </div>
+                    {% elif objetivo.objetivo_4 == 0.5 %}
+                    <div class="progress" style="height: 20px;">
+                        <div aria-valuemax="100"
+                             aria-valuemin="0"
+                             aria-valuenow="50"
+                             class="progress-bar progress-bar-striped progress-bar-animated bg-warning"
+                             role="progressbar"
+                             style="width: 50%;">
+                            Parcialmente lo cubre
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="progress" style="height: 20px;">
+                        <div aria-valuemax="100"
+                             aria-valuemin="0"
+                             aria-valuenow="100"
+                             class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+                             role="progressbar"
+                             style="width: 100%;">
+                            Totalmente cubierto
+                        </div>
+                    </div>
+                    {% endif %}
+                    <br>
+                    <br>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-6">
+                    <h3 class="texto_detalle">5.- Experimentar los beneficios de limitar el trabajo en proceso para
+                        mejorar el flujo de trabajo:</h3>
+                    {% if objetivo.objetivo_5 == 0 %}
+                    <div class="progress" style="height: 20px;">
+                        <div aria-valuemax="100"
+                             aria-valuemin="0"
+                             aria-valuenow="0"
+                             class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
+                             role="progressbar">
+                            No lo cubre
+                        </div>
+                    </div>
+                    {% elif objetivo.objetivo_5 == 0.5 %}
+                    <div class="progress" style="height: 20px;">
+                        <div aria-valuemax="100"
+                             aria-valuemin="0"
+                             aria-valuenow="50"
+                             class="progress-bar progress-bar-striped progress-bar-animated bg-warning"
+                             role="progressbar"
+                             style="width: 50%;">
+                            Parcialmente lo cubre
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="progress" style="height: 20px;">
+                        <div aria-valuemax="100"
+                             aria-valuemin="0"
+                             aria-valuenow="100"
+                             class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+                             role="progressbar"
+                             style="width: 100%;">
+                            Totalmente cubierto
+                        </div>
+                    </div>
+                    {% endif %}
+                    <br>
+                    <br>
+                </div>
+                <div class="col-6">
+                    <h3 class="texto_detalle">6.- Entender como implementar reuniones Kanban en torno al trabajo: </h3>
+                    {% if objetivo.objetivo_6 == 0 %}
+                    <div class="progress" style="height: 20px;">
+                        <div aria-valuemax="100"
+                             aria-valuemin="0"
+                             aria-valuenow="0"
+                             class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
+                             role="progressbar">
+                            No lo cubre
+                        </div>
+                    </div>
+                    {% elif objetivo.objetivo_6 == 0.5 %}
+                    <div class="progress" style="height: 20px;">
+                        <div aria-valuemax="100"
+                             aria-valuemin="0"
+                             aria-valuenow="50"
+                             class="progress-bar progress-bar-striped progress-bar-animated bg-warning"
+                             role="progressbar"
+                             style="width: 50%;">
+                            Parcialmente lo cubre
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="progress" style="height: 20px;">
+                        <div aria-valuemax="100"
+                             aria-valuemin="0"
+                             aria-valuenow="100"
+                             class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+                             role="progressbar"
+                             style="width: 100%;">
+                            Totalmente cubierto
+                        </div>
+                    </div>
+                    {% endif %}
+                    <br>
+                    <br>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-6">
+                    <h3 class="texto_detalle">7.- Entender las métricas principales de Kanban:</h3>
+                    {% if objetivo.objetivo_7 == 0 %}
+                    <div class="progress" style="height: 20px;">
+                        <div aria-valuemax="100"
+                             aria-valuemin="0"
+                             aria-valuenow="0"
+                             class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
+                             role="progressbar">
+                            No lo cubre
+                        </div>
+                    </div>
+                    {% elif objetivo.objetivo_7 == 0.5 %}
+                    <div class="progress" style="height: 20px;">
+                        <div aria-valuemax="100"
+                             aria-valuemin="0"
+                             aria-valuenow="50"
+                             class="progress-bar progress-bar-striped progress-bar-animated bg-warning"
+                             role="progressbar"
+                             style="width: 50%;">
+                            Parcialmente lo cubre
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="progress" style="height: 20px;">
+                        <div aria-valuemax="100"
+                             aria-valuemin="0"
+                             aria-valuenow="100"
+                             class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+                             role="progressbar"
+                             style="width: 100%;">
+                            Totalmente cubierto
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+</section>
+
+<section class="bg-light" id="detalles_juego_serio_practicas">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <div class="row justify-content-center">
+                    <h1 class="titulo practicas">Prácticas</h1>
+                    <span>
+                        <a data-popover-content="#practicas_pop"
+                           data-toggle="popover"
+                           data-trigger="focus"
+                           href="javascript:void(0);">
+                            <i class="far fa-question-circle"></i>
+                        </a>
+                    </span>
+                </div>
+
+                {% if practicas %}
+                {% for practica in practicas %}
+
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <img class="card-img"
+                                 src="/static/images/practica_1.png">
+                            <div class="card-img-overlay text-white d-flex flex-column justify-content-center">
+                                <h4 class="card-title">Visualizar el flujo de trabajo:</h4>
+                                {% if practica.practica_1 != '' %}
+                                    <p class="card-text">{{ practica.practica_1 }}</p>
+                                {% else %}
+                                    <p class="card-text">No aplica la practica</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <img class="card-img"
+                                 src="/static/images/practica_2.png">
+                            <div class="card-img-overlay text-white d-flex flex-column justify-content-center">
+                                <h4 class="card-title">Limitar el trabajo en progreso (WIP):</h4>
+                                {% if practica.practica_2 != '' %}
+                                    <p class="card-text">{{ practica.practica_2 }}</p>
+                                {% else %}
+                                    <p class="card-text">No aplica la practica</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <img class="card-img"
+                                 src="/static/images/practica_3.png">
+                            <div class="card-img-overlay text-white d-flex flex-column justify-content-center">
+                                <h4 class="card-title">Gestionar el flujo:</h4>
+                                {% if practica.practica_3 != '' %}
+                                    <p class="card-text">{{ practica.practica_3 }}</p>
+                                {% else %}
+                                    <p class="card-text">No aplica la practica</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <img class="card-img"
+                                 src="/static/images/practica_4.png">
+                            <div class="card-img-overlay text-white d-flex flex-column justify-content-center">
+                                <h4 class="card-title">Hacer explícitas las políticas del proceso:</h4>
+                                {% if practica.practica_4 != '' %}
+                                    <p class="card-text">{{ practica.practica_4 }}</p>
+                                {% else %}
+                                    <p class="card-text">No aplica la practica</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <img class="card-img"
+                                 src="/static/images/practica_5.png">
+                            <div class="card-img-overlay text-white d-flex flex-column justify-content-center">
+                                <h4 class="card-title">Implementar ciclos de retroalimentación:</h4>
+                                {% if practica.practica_5 != '' %}
+                                    <p class="card-text">{{ practica.practica_5 }}</p>
+                                {% else %}
+                                    <p class="card-text">No aplica la practica</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <img class="card-img"
+                                 src="/static/images/practica_6.png">
+                            <div class="card-img-overlay text-white d-flex flex-column justify-content-center">
+                                <h4 class="card-title">Mejorar colaborativamente:</h4>
+                                {% if practica.practica_6 != '' %}
+                                    <p class="card-text">{{ practica.practica_6 }}</p>
+                                {% else %}
+                                    <p class="card-text">No aplica la practica</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {% endfor %}
+                {% else %}
+                    <div class="row justify-content-center">
+                        <p class="texto_detalle" style="font-size:30px;">No implementa prácticas Kanban</p>
+                    </div>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="detalles_juego_serio_principios">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <div class="row justify-content-center">
+                    <h1 class="titulo principios">Principios</h1>
+                    <span>
+                        <a data-popover-content="#principios_pop"
+                           data-toggle="popover"
+                           data-trigger="focus"
+                           href="javascript:void(0);">
+                            <i class="far fa-question-circle"></i>
+                        </a>
+                    </span>
+                </div>
+
+                {% if principios %}
+                {% for principio in principios %}
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <img class="card-img"
+                                 src="/static/images/principio_1.jpg">
+                            <div class="card-img-overlay overlay-2 text-white d-flex flex-column justify-content-center">
+                                <h4 class="card-title">Empezar de donde estamos:</h4>
+                                {% if principio.principio_1 != '' %}
+                                    <p class="card-text">{{ principio.principio_1 }}</p>
+                                {% else %}
+                                    <p class="card-text">No aplica el principio</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <img class="card-img"
+                                 src="/static/images/principio_2.jpg">
+                            <div class="card-img-overlay overlay-2 text-white d-flex flex-column justify-content-center">
+                                <h4 class="card-title">Acordar perseguir un cambio evolutivo incremental:</h4>
+                                {% if principio.principio_2 != '' %}
+                                    <p class="card-text">{{ principio.principio_2 }}</p>
+                                {% else %}
+                                    <p class="card-text">No aplica el principio</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <img class="card-img"
+                                 src="/static/images/principio_3.jpg">
+                            <div class="card-img-overlay overlay-2 text-white d-flex flex-column justify-content-center">
+                                <h4 class="card-title">Respetar el proceso actual, roles, responsabilidades y títulos:</h4>
+                                {% if principio.principio_3 != '' %}
+                                    <p class="card-text">{{ principio.principio_3 }}</p>
+                                {% else %}
+                                    <p class="card-text">No aplica el principio</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <img class="card-img"
+                                 src="/static/images/principio_4.jpg">
+                            <div class="card-img-overlay overlay-2 text-white d-flex flex-column justify-content-center">
+                                <h4 class="card-title">Fomentar actos de liderazgo en todos los niveles:</h4>
+                                {% if principio.principio_4 != '' %}
+                                    <p class="card-text">{{ principio.principio_4 }}</p>
+                                {% else %}
+                                    <p class="card-text">No aplica el principio</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% else %}
+                    <div class="row justify-content-center">
+                        <p class="texto_detalle" style="font-size:30px;">No implementa principios Kanban</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bg-light" id="detalles_juego_serio_metricas">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <div class="row justify-content-center">
+                    <h1 class="titulo metricas">Métricas</h1>
+                    <span>
+                        <a data-popover-content="#metricas_pop"
+                           data-toggle="popover"
+                           data-trigger="focus"
+                           href="javascript:void(0);">
+                            <i class="far fa-question-circle"></i>
+                        </a>
+                    </span>
+                </div>
+
+                {% if metricas %}
+                {% for metrica in metricas %}
+                <div class="row justify-content-center">
+                    <div class="col-lg-4">
+                        <div class="d-flex flex-column align-items-center">
+                            <div class="p-2">
+                                <div class="row justify-content-center"><h2 class="texto_detalle metricas">Throughput</h2></div>
+                            </div>
+                            <div class="p-2">
+                                <i class="fas fa-chart-line metricas" style="font-size:150px;"></i>
+                            </div>
+                            <div class="p-2">
+                                <span class="texto_detalle" style="font-size:30px;">
+                                        {% if metrica.metrica_1 != '' %}
+                                            {{ metrica.metrica_1 }}
+                                        {% else %}
+                                            No aplica la métrica
+                                        {% endif %}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="d-flex flex-column align-items-center">
+                            <div class="p-2">
+                                <div class="row justify-content-center"><h2 class="texto_detalle metricas">Tiempo de entrega</h2></div>
+                            </div>
+                            <div class="p-2">
+                                <i class="far fa-chart-bar metricas" style="font-size:150px;"></i>
+                            </div>
+                            <div class="p-2">
+                                <span class="texto_detalle" style="font-size:30px;">
+                                        {% if metrica.metrica_2 != '' %}
+                                            {{ metrica.metrica_2 }}
+                                        {% else %}
+                                            No aplica la métrica
+                                        {% endif %}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="d-flex flex-column align-items-center">
+                            <div class="p-2">
+                                <div class="row justify-content-center"><h2 class="texto_detalle metricas">Work in progress (WIP)</h2></div>
+                            </div>
+                            <div class="p-2">
+                                <i class="fas fa-chart-area metricas" style="font-size:150px;"></i>
+                            </div>
+                            <div class="p-2">
+                                <span class="texto_detalle" style="font-size:30px;">
+                                        {% if metrica.metrica_3 != '' %}
+                                            {{ metrica.metrica_3 }}
+                                        {% else %}
+                                            No aplica la métrica
+                                        {% endif %}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor%}
+                {% else %}
+                    <div class="row justify-content-center">
+                        <p class="texto_detalle" style="font-size:30px;">No implementa métricas</p>
+                    </div>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<div id="autores_pop" hidden>
+    <div class="popover-body">
+        <p>
+            Se listan los nombres de los autores.
+        </p>
+    </div>
+</div>
+
+<div id="caracteristicas_pop" hidden>
+    <div class="popover-body">
+        <p>
+            Aquí se describen algunas características relevantes del juego serio. Son de utilidad al momento de
+            seleccionar el juego serio que más se adecue a las necesidades para su implementación.
+        </p>
+        <ul>
+            <li><i class="far fa-clock"></i>:<span> Duración en minutos que tarda el juego</span></li>
+            <li><i class="fas fa-dollar-sign"></i>:<span> Tipo de licencia; de pago o de libre acceso</span></li>
+            <li><i class="fas fa-gamepad"></i>:<span> Tipo de actividad; juego serio o juego de simulación</span></li>
+            <li><i class="far fa-dizzy"></i>:<span> Complejidad al implementar; baja, media o alta</span></li>
+            <li><i class="far fa-frown"></i>:<span> Dificultad para entender sus reglas; baja, media o alta</span></li>
+            <li><i class="far fa-comment-alt"></i>:<span> El idioma en que están sus reglas o manuales</span></li>
+            <li><i class="far fa-list-alt"></i>:<span> Pre-requisitos para poder jugar o sacar el mayor provecho</span></li>
+            <li><i class="fas fa-users"></i>:<span> Tipo de juego; cooperativo, competitivo o ambos</span></li>
+        </ul>
+    </div>
+</div>
+
+<div id="enlaces_pop" hidden>
+    <div class="popover-body">
+        Enlaces externos a la página oficial y de haber manuales descargables o para consultar.
+    </div>
+</div>
+
+<div id="video_pop" hidden>
+    <div class="popover-body">
+        Video(s) relevante(s) donde se puede ver como se implementa el juego serio.
+    </div>
+</div>
+
+<div id="jugadores_pop" hidden>
+    <div class="popover-body">
+        Número mínimo y máximo de jugadores que admite el juego serio, si el número de participantes es superior al
+        máximo permitido se recomienda hacer varios equipos y que compitan entre sí.
+    </div>
+</div>
+
+<div id="objetivos_pop" hidden>
+    <div class="popover-body">
+        <p>
+            En este apartado se listan los siete objetivos de aprendizaje alineados a la primera certificación de Kanban
+            "Team Kanban Practitioner" de la Kanban University, y que tanto cubre ese juego serio dichos objetivos.
+        </p>
+        <p>
+            Son tres niveles de cobertura: Totalmente cubierto, parcialmente cubierto y no lo cubre.
+        </p>
+    </div>
+</div>
+
+<div id="practicas_pop" hidden>
+    <div class="popover-body">
+        <p>
+            Aquí se listan las seis prácticas fundamentales del método Kanban y se describe como es que son
+            implementadas por ese juego serio.
+        </p>
+    </div>
+</div>
+
+<div id="principios_pop" hidden>
+    <div class="popover-body">
+        <p>
+            En esta sección se describe como es que el juego serio implementa los cuatro principios fundamentales del
+            método Kanban.
+        </p>
+    </div>
+</div>
+
+<div id="metricas_pop" hidden>
+    <div class="popover-body">
+        <p>
+            Aquí se describe como es que el juego serio implementa las métricas básicas del método Kanban.
+        </p>
+        <ul>
+            <li><b>Throughput: </b>Mide la cantidad de tareas terminadas dado un tiempo específico.</li>
+            <li><b>Tiempo de entrega: </b>
+                Es el tiempo aproximado que se tarda una tarea en ser completada desde su inicio hasta terminado.
+            </li>
+            <li><b>Work in progress (WIP): </b>
+                Es la cantidad de trabajo que hay en cada columna de un tablero Kanban o en cada fase de un proceso.
+            </li>
+        </ul>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block js %}
+    <script src="/static/js/pop_up.js"></script>
+{% endblock %}
